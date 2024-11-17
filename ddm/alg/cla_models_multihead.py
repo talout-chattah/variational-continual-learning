@@ -1,7 +1,8 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import numpy as np
 from copy import deepcopy
 
+tf.disable_v2_behavior()
 np.random.seed(0)
 tf.set_random_seed(0)
 
@@ -68,7 +69,7 @@ class Cla_NN(object):
         costs = []
         # Training cycle
         for epoch in range(no_epochs):
-            perm_inds = range(x_train.shape[0])
+            perm_inds = list(range(x_train.shape[0]))
             np.random.shuffle(perm_inds)
             cur_x_train = x_train[perm_inds]
             cur_y_train = y_train[perm_inds]
